@@ -17,7 +17,7 @@
         class="input"
         required=true
         autofocus autocomplete="off"
-        placeholder="Year"
+        placeholder="Description"
         v-model="newActivity.description"
       />
 
