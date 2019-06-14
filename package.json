@@ -1,6 +1,6 @@
 {
   "name": "tuyl-front",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Vue.js front for Tuyl game",
   "author": "Hugo Daniel <hugodaniel.icam@gmail.com>",
   "private": true,
