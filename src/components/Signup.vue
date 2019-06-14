@@ -35,13 +35,13 @@ export default {
 
   methods: {
     onSubmit () {
-      axios.post('https://tuyl-api.herokuapp.com/sign_up', { user: { email: this.email, password: this.password, password_confirmation: this.password_confirmation } })
+      axios.post(process.env.ROOT_API + '/sign_up', { user: { email: this.email, password: this.password, password_confirmation: this.password_confirmation } })
         .then(request => this.loginUser(this))
         .catch(() => this.loginFailed())
     },
 
     loginUser (data) {
-      axios.post('https://tuyl-api.herokuapp.com/login', { user: { email: data.email, password: data.password } })
+      axios.post(process.env.ROOT_API + '/login', { user: { email: data.email, password: data.password } })
         .then(request => this.loginSuccessful(request))
         .catch(() => this.loginFailed())
     },

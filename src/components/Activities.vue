@@ -20,7 +20,7 @@ export default {
     }
   },
   created () {
-    axios.get('https://tuyl-api.herokuapp.com/api/v1/activities', { headers: { Authorization: localStorage.token } })
+    axios.get(process.env.ROOT_API + '/api/v1/activities', { headers: { Authorization: localStorage.token } })
       .then(response => {
         this.activities = response.data
       })

@@ -35,7 +35,7 @@ export default {
       return localStorage.signedIn
     },
     signOut () {
-      axios.delete('https://tuyl-api.herokuapp.com/logout', { headers: { Authorization: localStorage.token } })
+      axios.delete(process.env.ROOT_API + '/logout', { headers: { Authorization: localStorage.token } })
         .then(response => {
           delete localStorage.token
           delete localStorage.signedIn

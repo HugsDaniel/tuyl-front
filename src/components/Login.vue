@@ -32,7 +32,7 @@ export default {
 
   methods: {
     onSubmit () {
-      axios.post('https://tuyl-api.herokuapp.com/login', { user: { email: this.email, password: this.password } })
+      axios.post(process.env.ROOT_API + '/login', { user: { email: this.email, password: this.password } })
         .then(request => this.loginSuccessful(request))
         .catch(() => this.loginFailed())
     },
