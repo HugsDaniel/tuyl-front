@@ -6,6 +6,7 @@
       <input
         id="activity_name"
         class="input"
+        required=true
         autofocus autocomplete="off"
         placeholder="Type an activity name"
         v-model="newActivity.name" />
@@ -14,6 +15,7 @@
       <input
         id="activity_description"
         class="input"
+        required=true
         autofocus autocomplete="off"
         placeholder="Year"
         v-model="newActivity.description"
