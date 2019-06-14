@@ -91,6 +91,10 @@ export default {
 </script>
 
 <style>
+  #activities {
+    margin-top: 40px;
+  }
+
   h2 {
     margin: 40px;
   }
