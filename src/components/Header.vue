@@ -1,18 +1,18 @@
 <template>
-  <header class="bg-grey-lighter py-4">
-    <div class="container m-auto flex flex-wrap items-center justify-end">
-      <div class="flex-1 flex items-center">
-        <svg class="fill-current text-indigo" viewBox="0 0 24 24" width="24" height="24"><title>record vinyl</title><path d="M23.938 10.773a11.915 11.915 0 0 0-2.333-5.944 12.118 12.118 0 0 0-1.12-1.314A11.962 11.962 0 0 0 12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12c0-.414-.021-.823-.062-1.227zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path></svg>
+  <header>
+    <div>
+      <b-navbar toggleable="lg" type="dark" variant="info">
+        <b-link to="/" class="link">Accueil</b-link>
 
-        <a href="/" class="uppercase text-sm font-mono pl-4 font-semibold no-underline text-indigo-dark hover:text-indigo-darker">Accueil</a>
-      </div>
-      <div>
-        <router-link to="/login" class="link-grey px-2 no-underline" v-if="!signedIn()">Sign in</router-link>
-        <router-link to="/sign_up" class="link-grey px-2 no-underline" v-if="!signedIn()">Sign Up</router-link>
-        <router-link to="/activities" class="link-grey px-2 no-underline" v-if="signedIn()">Activities</router-link>
-        <router-link to="/skills" class="link-grey px-2 no-underline" v-if="signedIn()">Skills</router-link>
-        <a href="#" @click.prevent="signOut" class="link-grey px-2 no-underline" v-if="signedIn()">Sign out</a>
-      </div>
+        <b-navbar-nav class="ml-auto">
+          <b-link to="/activities" class="link">Activités</b-link>
+          <b-link to="/skills" class="link">Compétences</b-link>
+
+          <b-link to="/login" class="link" v-if="!signedIn()">Se connecter</b-link>
+          <b-link to="/sign_up" class="link" v-if="!signedIn()">S'inscrire</b-link>
+          <a href="#" @click.prevent="signOut" class="link" v-if="signedIn()">Sign out</a>
+        </b-navbar-nav>
+      </b-navbar>
     </div>
   </header>
 </template>
@@ -46,3 +46,11 @@ export default {
   }
 }
 </script>
+
+<style>
+  .link {
+    text-decoration: none !important;
+    padding: 10px;
+    color: white;
+  }
+</style>

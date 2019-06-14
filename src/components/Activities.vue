@@ -1,31 +1,46 @@
 <template>
   <div id="activities">
-    <h3>Add a new activity</h3>
-    <form action="" @submit.prevent="addActivity">
-      <label for="activity_name" class="label">Name</label>
-      <input
-        id="activity_name"
-        class="input"
-        required=true
-        autofocus autocomplete="off"
-        placeholder="Type an activity name"
-        v-model="newActivity.name" />
+    <h2>Toutes les activités</h2>
+    <div class="activity-form">
+      <b-form action="" @submit.prevent="addActivity">
+        <b-input
+          id="activity_name"
+          class="input"
+          required
+          autofocus autocomplete="off"
+          placeholder="Nom"
+          v-model="newActivity.name"
+        ></b-input>
 
-      <label for="activity_description" class="label">Description</label>
-      <input
-        id="activity_description"
-        class="input"
-        required=true
-        autofocus autocomplete="off"
-        placeholder="Description"
-        v-model="newActivity.description"
-      />
+        <b-input
+          id="activity_description"
+          class="input"
+          required
+          autocomplete="off"
+          placeholder="Description"
+          v-model="newActivity.description"
+        ></b-input>
 
-      <input type="submit" value="Add Activity"/>
-    </form>
+        <b-button type="submit" variant="success" class="activity-btn">Ajouter une activité</b-button>
+      </b-form>
+    </div>
 
-    <div v-for="activity in activities" :key="activity.id" :activity="activity">
-     <p>{{activity.name}} : {{activity.description}}</p>
+    <div class="row">
+      <div class="activities-list col-3" v-for="activity in activities" :key="activity.id" :activity="activity">
+        <b-card
+            :title="activity.name"
+            img-src="https://picsum.photos/600/300/?image=25"
+            img-alt="Image"
+            img-top
+            tag="article"
+            style="max-width: 20rem;"
+            class="mb-2"
+          >
+            <b-card-text>
+              {{ activity.description }}
+            </b-card-text>
+          </b-card>
+      </div>
     </div>
   </div>
 </template>
@@ -74,3 +89,26 @@ export default {
   }
 }
 </script>
+
+<style>
+  h2 {
+    margin: 40px;
+  }
+  .activities-list {
+    margin: auto;
+    width: 50%;
+  }
+
+  .activity-form {
+    margin: 40px;
+  }
+
+  .activity-btn {
+    margin: 10px;
+  }
+
+  .input {
+    margin: 5px auto;
+    width: 50%;
+  }
+</style>
