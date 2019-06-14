@@ -51,6 +51,10 @@ export default {
 </script>
 
 <style>
+  #skills {
+    margin-top: 40px;
+  }
+
   h2 {
     margin: 40px;
   }
