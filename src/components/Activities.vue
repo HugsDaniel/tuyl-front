@@ -65,7 +65,7 @@ export default {
       axios.post(process.env.ROOT_API + '/api/v1/activities/', { activity: { name: this.newActivity.name, description: this.newActivity.description } }, { headers: { Authorization: localStorage.token } })
         .then(response => {
           this.activities.push(response.data)
-          this.newActivity = ''
+          this.newActivity = []
         })
         .catch(error => this.errors.push(error))
     }
