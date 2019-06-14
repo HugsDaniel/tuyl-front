@@ -11,7 +11,6 @@
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit",
     "build": "node build/build.js",
-    "heroku-postbuild": "yarn install --only=dev --no-shrinkwrap && yarn build"
   },
   "dependencies": {
     "axios": "^0.19.0",
