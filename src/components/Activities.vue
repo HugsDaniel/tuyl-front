@@ -109,6 +109,6 @@ export default {
 
   .input {
     margin: 5px auto;
-    width: 50%;
+    width: 50% !important;
   }
 </style>
