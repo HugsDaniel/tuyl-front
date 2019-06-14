@@ -7,6 +7,7 @@
         <b-navbar-nav class="ml-auto">
           <b-link to="/activities" class="link">Activités</b-link>
           <b-link to="/skills" class="link">Compétences</b-link>
+          <b-link to="/dashboard" class="link" v-if="signedIn()">Mon plateau</b-link>
 
           <b-link to="/login" class="link" v-if="!signedIn()">Se connecter</b-link>
           <b-link to="/sign_up" class="link" v-if="!signedIn()">S'inscrire</b-link>
@@ -14,6 +15,7 @@
         </b-navbar-nav>
       </b-navbar>
     </div>
+    <b-alert id="success-alert" variant="success" style="display: none;" show dismissible>Success Alert</b-alert>
   </header>
 </template>
 

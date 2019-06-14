@@ -21,7 +21,7 @@
           v-model="newActivity.description"
         ></b-input>
 
-        <b-button type="submit" variant="success" class="activity-btn">Ajouter une activité</b-button>
+        <b-button type="submit" variant="outline-primary" class="activity-btn">Ajouter une activité</b-button>
       </b-form>
     </div>
 
@@ -39,6 +39,7 @@
             <b-card-text>
               {{ activity.description }}
             </b-card-text>
+            <b-button @click='participate(activity.id)' variant="outline-info">J'vais faire ça</b-button>
           </b-card>
       </div>
     </div>
@@ -83,6 +84,15 @@ export default {
         .then(response => {
           this.activities.unshift(response.data)
           this.newActivity = []
+        })
+        .catch(error => this.errors.push(error))
+    },
+
+    participate (id) {
+      axios.post(process.env.ROOT_API + '/api/v1/user_activities/', { user_activity: { activity_id: id } }, { headers: { Authorization: localStorage.token } })
+        .then(response => {
+          this.$router.replace('/dashboard')
+          document.getElementById('success-alert').style.display = 'block'
         })
         .catch(error => this.errors.push(error))
     }

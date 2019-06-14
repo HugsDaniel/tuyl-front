@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Activities from '@/components/Activities'
 import Skills from '@/components/Skills'
+import Dashboard from '@/components/Dashboard'
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
 
@@ -39,6 +40,12 @@ export default new Router({
       path: '/skills',
       name: 'Skills',
       component: Skills
+    },
+
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard
     }
   ]
 })
