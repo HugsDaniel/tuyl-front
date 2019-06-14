@@ -17,6 +17,8 @@
               <b-card-text>
                 {{ activity.activity_description }}
               </b-card-text>
+              <small>{{ activity.status }}</small>
+              <b-button v-if="activity.status === 'pending'" @click="activityDone(activity.id)">Je l'ai fait !</b-button>
             </b-card>
         </div>
       </div>
@@ -45,6 +47,18 @@ export default {
         .then(response => {
           this.user = response.data.user
           this.activities = response.data.activities
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+    }
+  },
+
+  methods: {
+    activityDone (id) {
+      axios.put(process.env.ROOT_API + '/api/v1/user_activities/' + id + '/done', { user_activity: {} }, { headers: { Authorization: localStorage.token } })
+        .then(response => {
+          this.activities = response.data
         })
         .catch(e => {
           this.errors.push(e)
