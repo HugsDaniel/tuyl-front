@@ -20,12 +20,10 @@ const app = express();
 const staticFileMiddleware = express.static(path.join(__dirname + '/dist'));
 
 app.use(staticFileMiddleware);
-
 app.use(history({
   disableDotRule: true,
   verbose: true
 }));
-
 app.use(staticFileMiddleware);
 
 app.get('/', function (req, res) {
