@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Activities from '@/components/Activities'
+import Skills from '@/components/Skills'
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
 
@@ -32,6 +33,12 @@ export default new Router({
       path: '/activities',
       name: 'Activities',
       component: Activities
+    },
+
+    {
+      path: '/skills',
+      name: 'Skills',
+      component: Skills
     }
   ]
 })
