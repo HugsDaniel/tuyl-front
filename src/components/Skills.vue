@@ -1,7 +1,22 @@
 <template>
   <div id="skills">
-    <div v-for="skill in skills" :key="skill.id">
-     <p>{{skill.name}} : {{skill.description}}</p>
+    <h2>Toutes les compétences</h2>
+    <div class="skills-list">
+      <b-card-group>
+        <div class="row">
+          <div class="col-4" v-for="skill in skills" :key="skill.id">
+            <b-card
+              border-variant="secondary"
+              header-border-variant="secondary"
+              align="center"
+              :header="skill.name"
+              class="skill-card"
+            >
+              <b-card-text>{{skill.description}}</b-card-text>
+            </b-card>
+          </div>
+        </div>
+      </b-card-group>
     </div>
   </div>
 </template>
@@ -34,3 +49,17 @@ export default {
   }
 }
 </script>
+
+<style>
+  h2 {
+    margin: 40px;
+  }
+
+  .skill-card {
+    margin: 10px;
+  }
+
+  .skills-list {
+    margin: 10px;
+  }
+</style>
