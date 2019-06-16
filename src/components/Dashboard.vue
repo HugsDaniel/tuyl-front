@@ -17,8 +17,8 @@
               <b-card-text>
                 {{ user_activity.activity.description }}
               </b-card-text>
-              <small>{{ user_activity.status }}</small>
-              <b-button v-if="user_activity.status === 'pending'" @click="activityDone(user_activity.id)">Je l'ai fait !</b-button>
+
+              <router-link v-if="user_activity.status == 'pending'" :to="'/user_activity/' + user_activity.id" class="btn btn-outline-primary">Je l'ai fait !</router-link>
             </b-card>
         </div>
       </div>
@@ -36,7 +36,9 @@ export default {
       user_activities: [],
       name: [],
       description: [],
-      errors: []
+      errors: [],
+      userActivity: [],
+      satisfactionLevels: [{ text: 'Nul', value: 0 }, { text: 'Passable', value: 1 }, { text: 'Pas mal', value: 2 }, { text: 'Bien', value: 3 }, { text: 'Exceptionnel', value: 4 }]
     }
   },
   created () {
@@ -55,8 +57,8 @@ export default {
   },
 
   methods: {
-    activityDone (id) {
-      axios.put(process.env.ROOT_API + '/api/v1/user_activities/' + id + '/done', { user_activity: {} }, { headers: { Authorization: localStorage.token } })
+    markActivityAsDone (id) {
+      axios.put(process.env.ROOT_API + '/api/v1/user_activities/' + id + '/done', { user_activity: { satisfaction_level: this.userActivity.satisfaction_level } }, { headers: { Authorization: localStorage.token } })
         .then(response => {
           this.user_activities = response.data
         })

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Activities from '@/components/Activities'
+import UserActivity from '@/components/UserActivity'
 import Skills from '@/components/Skills'
 import Dashboard from '@/components/Dashboard'
 import Login from '@/components/Login'
@@ -34,6 +35,12 @@ export default new Router({
       path: '/activities',
       name: 'Activities',
       component: Activities
+    },
+
+    {
+      path: '/user_activity/:id',
+      name: 'UserActivity',
+      component: UserActivity
     },
 
     {
