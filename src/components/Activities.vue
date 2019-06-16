@@ -26,7 +26,7 @@
     </div>
 
     <div class="row">
-      <div class="activities-list col-3" v-for="activity in activities" :key="activity.id" :activity="activity">
+      <div class="activities-list col-lg-3 col-12" v-for="activity in activities" :key="activity.id" :activity="activity">
         <b-card
             :title="activity.name"
             img-src="https://picsum.photos/600/300/?image=25"
@@ -123,6 +123,5 @@ export default {
 
   .input {
     margin: 5px auto;
-    width: 50% !important;
   }
 </style>

@@ -4,9 +4,9 @@
       <p>{{ user.email }}</p>
 
       <div class="row">
-        <div class="activities-list col-3" v-for="activity in activities" :key="activity.id" :activity="activity">
+        <div class="activities-list col-lg-3 col-12" v-for="user_activity in user_activities" :key="user_activity.id" :user_activity="user_activity">
           <b-card
-              :title="activity.activity_name"
+              :title="user_activity.activity.name"
               img-src="https://picsum.photos/600/300/?image=25"
               img-alt="Image"
               img-top
@@ -15,10 +15,10 @@
               class="mb-2"
             >
               <b-card-text>
-                {{ activity.activity_description }}
+                {{ user_activity.activity.description }}
               </b-card-text>
-              <small>{{ activity.status }}</small>
-              <b-button v-if="activity.status === 'pending'" @click="activityDone(activity.id)">Je l'ai fait !</b-button>
+              <small>{{ user_activity.status }}</small>
+              <b-button v-if="user_activity.status === 'pending'" @click="activityDone(user_activity.id)">Je l'ai fait !</b-button>
             </b-card>
         </div>
       </div>
@@ -33,7 +33,7 @@ export default {
   data () {
     return {
       user: '',
-      activities: [],
+      user_activities: [],
       name: [],
       description: [],
       errors: []
@@ -46,7 +46,7 @@ export default {
       axios.get(process.env.ROOT_API + '/api/v1/dashboard', { headers: { Authorization: localStorage.token } })
         .then(response => {
           this.user = response.data.user
-          this.activities = response.data.activities
+          this.user_activities = response.data.user_activities
         })
         .catch(e => {
           this.errors.push(e)
@@ -58,7 +58,7 @@ export default {
     activityDone (id) {
       axios.put(process.env.ROOT_API + '/api/v1/user_activities/' + id + '/done', { user_activity: {} }, { headers: { Authorization: localStorage.token } })
         .then(response => {
-          this.activities = response.data
+          this.user_activities = response.data
         })
         .catch(e => {
           this.errors.push(e)

@@ -4,7 +4,7 @@
     <div class="skills-list">
       <b-card-group>
         <div class="row">
-          <div class="col-4" v-for="skill in skills" :key="skill.id">
+          <div class="col-lg-4 col-12" v-for="skill in skills" :key="skill.id">
             <b-card
               border-variant="secondary"
               header-border-variant="secondary"
