@@ -62,7 +62,7 @@ export default {
   },
   created () {
     if (!localStorage.signedIn) {
-      this.$router.replace('/')
+      this.$router.replace('/login')
     } else {
       axios.get(process.env.ROOT_API + '/api/v1/activities', { headers: { Authorization: localStorage.token } })
         .then(response => {

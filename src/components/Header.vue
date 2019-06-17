@@ -3,7 +3,7 @@
     <div>
       <b-navbar toggleable="lg" type="dark" variant="info">
         <b-link to="/" class="link">
-          <img src="../assets/logo.png" id="logo" alt="logo">
+          <img src="../assets/images/logo.png" id="logo" alt="logo">
         </b-link>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -66,10 +66,6 @@ export default {
     text-decoration: none !important;
     padding: 10px;
     color: white;
-  }
-
-  .navbar-lewagon .navbar-collapse {
-    flex-grow: 0;
   }
 
   #logo {

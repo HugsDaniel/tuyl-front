@@ -14,7 +14,7 @@
       <button type="submit">Sign up</button>
 
       <div><router-link to="/sign_up">Sign up</router-link></div>
-  </form>
+    </form>
   </div>
 </template>
 
@@ -56,7 +56,7 @@ export default {
       localStorage.signedIn = true
       this.error = false
 
-      this.$router.replace(this.$route.query.redirect || '/')
+      this.$router.replace(this.$route.query.redirect || '/user_skills')
     },
 
     loginFailed () {

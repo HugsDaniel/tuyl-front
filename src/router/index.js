@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Activities from '@/components/Activities'
 import UserActivity from '@/components/UserActivity'
 import Skills from '@/components/Skills'
+import UserSkills from '@/components/UserSkills'
 import Dashboard from '@/components/Dashboard'
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
@@ -53,6 +54,12 @@ export default new Router({
       path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard
+    },
+
+    {
+      path: '/user_skills',
+      name: 'UserSkills',
+      component: UserSkills
     }
   ]
 })
