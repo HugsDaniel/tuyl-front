@@ -8259,6 +8259,11 @@ void-elements@^2.0.0:
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
   integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
 
+vue-cal@^1.60.0:
+  version "1.60.0"
+  resolved "https://registry.yarnpkg.com/vue-cal/-/vue-cal-1.60.0.tgz#f249899e604349bf9d95cdb9df9b7946fa3c7512"
+  integrity sha512-qq9lhk6V7OKO568+BZ3597ZJwpaNGSUEmIrH2ezBLgGhkFZebDwJMniIa5zgckn3iWaqbmTKaTsHlXM3i2KbZg==
+
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
