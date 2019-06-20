@@ -3,13 +3,13 @@
     <h4>Mes compétences</h4>
     <div v-for="userSkill in userSkills" :key="userSkill.id" :userSkill="userSkill">{{userSkill.skill.name}} : {{userSkill.amount}}</div>
 
-    <div style="height: 500px;">
+    <div id="calendar">
       <vue-cal
         small
         default-view="week"
+        hide-view-selector
         :time-from="9 * 60"
         :time-to="23 * 60"
-        :disable-views="['years', 'year']"
         :locale="locale"
         today-button
         :events="userActivities"
@@ -17,48 +17,23 @@
         :on-event-click="onEventClick"
       >
         <div slot="today-button">
-          <button slot="activator">
+          <b-button variant="outline-info" size="sm" slot="activator">
             <span>Today</span>
-          </button>
+          </b-button>
         </div>
       </vue-cal>
 
       <b-modal v-model="showDialog" :title="selectedEvent.title + ' - ' + selectedEvent.startDate">
-        <p v-html="selectedEvent.content"/>
-        <strong>Event details:</strong>
-        <ul>
-          <li>Event starts at: {{ selectedEvent.startTime }}</li>
-          <li>Event ends at: {{ selectedEvent.endTime }}</li>
-        </ul>
-        <template slot="modal-footer" slot-scope="{ ok }">
+        <p>De {{ selectedEvent.startTime }} à {{ selectedEvent.endTime }}</p>
+        <p>{{ selectedEvent.content }}</p>
 
-          <router-link v-if="selectedEvent.status == 'pending'" :to="'/user_activity/' + selectedEvent.id" class="btn btn-outline-primary">Je l'ai fait !</router-link>
-          <b-button variant="outline-success" @click="ok()">
+        <template slot="modal-footer" slot-scope="{ ok }">
+          <router-link v-if="selectedEvent.status == 'pending'" :to="'/user_activity/' + selectedEvent.id" class="btn btn-outline-primary btn-sm">Je l'ai fait !</router-link>
+          <b-button variant="outline-success" size="sm" @click="ok()">
             OK
           </b-button>
         </template>
       </b-modal>
-    </div>
-
-    <h4>Mes activités</h4>
-    <div class="row">
-      <div class="col-lg-3 col-12" v-for="userActivity in userActivities" :key="userActivity.id" :userActivity="userActivity">
-        <b-card
-            :title="userActivity.title"
-            img-src="https://picsum.photos/600/300/?image=25"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 20rem;"
-            class="mb-2"
-          >
-          <b-card-text>
-            {{ userActivity.content }}
-          </b-card-text>
-
-          <router-link v-if="userActivity.status == 'pending'" :to="'/user_activity/' + userActivity.id" class="btn btn-outline-primary">Je l'ai fait !</router-link>
-        </b-card>
-      </div>
     </div>
   </div>
 </template>
@@ -113,6 +88,11 @@ export default {
 <style>
   h4 {
     margin: 1rem;
+  }
+
+  #calendar {
+    height: 40rem;
+    margin: 3rem 1rem;
   }
 
   .vuecal__menu, .vuecal__cell-events-count {background-color: #42b983;}

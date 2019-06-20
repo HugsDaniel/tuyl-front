@@ -40,7 +40,7 @@
               {{ activity.description }}
             </b-card-text>
 
-            <b-button v-b-toggle="'collapse-' + activity.id" variant="outline-primary">Toggle Collapse</b-button>
+            <b-button v-b-toggle="'collapse-' + activity.id" variant="outline-primary">J'vais faire ça</b-button>
             <b-collapse :id="'collapse-' + activity.id" class="mt-2">
               <b-card>
                 <b-form action="" @submit.prevent="participate(activity.id)">
@@ -50,7 +50,7 @@
                   <span>Fin</span>
                   <datetime v-model="userActivity.end_time" type="datetime" :minute-step='10'></datetime>
 
-                  <b-button type="submit" variant="outline-info">J'vais faire ça</b-button>
+                  <b-button type="submit" variant="outline-info" id="confirm-btn">All right !</b-button>
                 </b-form>
               </b-card>
             </b-collapse>
@@ -120,6 +120,10 @@ export default {
 <style>
   #activities {
     margin-top: 40px;
+  }
+
+  #confirm-btn {
+    margin: 1rem;
   }
 
   h2 {
