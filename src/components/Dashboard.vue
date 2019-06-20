@@ -14,7 +14,6 @@
         today-button
         :events="userActivities"
         events-count-on-year-view
-        events-on-week-view="short"
         :on-event-click="onEventClick"
       >
         <div slot="today-button">
