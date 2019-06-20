@@ -3,11 +3,48 @@
     <h4>Mes compétences</h4>
     <div v-for="userSkill in userSkills" :key="userSkill.id" :userSkill="userSkill">{{userSkill.skill.name}} : {{userSkill.amount}}</div>
 
+    <div style="height: 500px;">
+      <vue-cal
+        small
+        default-view="week"
+        :time-from="9 * 60"
+        :time-to="23 * 60"
+        :disable-views="['years', 'year']"
+        :locale="locale"
+        today-button
+        :events="userActivities"
+        events-count-on-year-view
+        :on-event-click="onEventClick"
+      >
+        <div slot="today-button">
+          <button slot="activator">
+            <span>Today</span>
+          </button>
+        </div>
+      </vue-cal>
+
+      <b-modal v-model="showDialog" :title="selectedEvent.title + ' - ' + selectedEvent.startDate">
+        <p v-html="selectedEvent.content"/>
+        <strong>Event details:</strong>
+        <ul>
+          <li>Event starts at: {{ selectedEvent.startTime }}</li>
+          <li>Event ends at: {{ selectedEvent.endTime }}</li>
+        </ul>
+        <template slot="modal-footer" slot-scope="{ ok }">
+
+          <router-link v-if="selectedEvent.status == 'pending'" :to="'/user_activity/' + selectedEvent.id" class="btn btn-outline-primary">Je l'ai fait !</router-link>
+          <b-button variant="outline-success" @click="ok()">
+            OK
+          </b-button>
+        </template>
+      </b-modal>
+    </div>
+
     <h4>Mes activités</h4>
     <div class="row">
       <div class="col-lg-3 col-12" v-for="userActivity in userActivities" :key="userActivity.id" :userActivity="userActivity">
         <b-card
-            :title="userActivity.activity.name"
+            :title="userActivity.title"
             img-src="https://picsum.photos/600/300/?image=25"
             img-alt="Image"
             img-top
@@ -16,7 +53,7 @@
             class="mb-2"
           >
           <b-card-text>
-            {{ userActivity.activity.description }}
+            {{ userActivity.content }}
           </b-card-text>
 
           <router-link v-if="userActivity.status == 'pending'" :to="'/user_activity/' + userActivity.id" class="btn btn-outline-primary">Je l'ai fait !</router-link>
@@ -28,12 +65,18 @@
 
 <script>
 import axios from 'axios'
+import VueCal from 'vue-cal'
+import 'vue-cal/dist/vuecal.css'
 
 export default {
   name: 'dashboard',
+  components: { VueCal },
   data () {
     return {
+      selectedEvent: {},
+      showDialog: false,
       user: '',
+      locale: 'fr',
       userActivities: [],
       userSkills: [],
       errors: [],
@@ -54,11 +97,48 @@ export default {
           this.errors.push(e)
         })
     }
+  },
+
+  methods: {
+    onEventClick (event, e) {
+      this.selectedEvent = event
+      this.showDialog = true
+
+      // Prevent navigating to narrower view (default vue-cal behavior).
+      e.stopPropagation()
+    }
   }
 }
 </script>
 <style>
   h4 {
     margin: 1rem;
+  }
+
+  .vuecal__menu, .vuecal__cell-events-count {background-color: #42b983;}
+  .vuecal__menu li {border-bottom-color: #fff;color: #fff;}
+  .vuecal__menu li.active {background-color: rgba(255, 255, 255, 0.15);}
+  .vuecal__title-bar {background-color: #e4f5ef;}
+  .vuecal__cell.today, .vuecal__cell.current {background-color: rgba(240, 240, 255, 0.4);}
+  .vuecal:not(.vuecal--day-view) .vuecal__cell.selected {background-color: rgba(235, 255, 245, 0.4);}
+  .vuecal__cell.selected:before {border-color: rgba(66, 185, 131, 0.5);}
+
+  .vuecal__event {cursor: pointer;}
+
+  .vuecal__event-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 4px 0 8px;
+  }
+
+  .vuecal__event-time {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .vuecal__event-content {
+    font-style: italic;
   }
 </style>
