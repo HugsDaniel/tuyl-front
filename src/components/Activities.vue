@@ -26,7 +26,7 @@
     </div>
 
     <div class="row">
-      <div class="activities-list col-lg-3 col-12" v-for="activity in activities" :key="activity.id" :activity="activity">
+      <div class="activities-list col-lg-4 col-12" v-for="activity in activities" :key="activity.id" :activity="activity">
         <b-card
             :title="activity.name"
             img-src="https://picsum.photos/600/300/?image=25"
@@ -39,7 +39,21 @@
             <b-card-text>
               {{ activity.description }}
             </b-card-text>
-            <b-button @click='participate(activity.id)' variant="outline-info">J'vais faire ça</b-button>
+
+            <b-button v-b-toggle="'collapse-' + activity.id" variant="outline-primary">Toggle Collapse</b-button>
+            <b-collapse :id="'collapse-' + activity.id" class="mt-2">
+              <b-card>
+                <b-form action="" @submit.prevent="participate(activity.id)">
+                  <span>Début</span>
+                  <datetime v-model="userActivity.begin_time" type="datetime" :minute-step='10'></datetime>
+
+                  <span>Fin</span>
+                  <datetime v-model="userActivity.end_time" type="datetime" :minute-step='10'></datetime>
+
+                  <b-button type="submit" variant="outline-info">J'vais faire ça</b-button>
+                </b-form>
+              </b-card>
+            </b-collapse>
           </b-card>
       </div>
     </div>
@@ -57,6 +71,7 @@ export default {
       name: [],
       description: [],
       newActivity: [],
+      userActivity: {},
       errors: []
     }
   },
@@ -89,7 +104,9 @@ export default {
     },
 
     participate (id) {
-      axios.post(process.env.ROOT_API + '/api/v1/user_activities/', { user_activity: { activity_id: id } }, { headers: { Authorization: localStorage.token } })
+      this.userActivity.activity_id = id
+
+      axios.post(process.env.ROOT_API + '/api/v1/user_activities/', { user_activity: this.userActivity }, { headers: { Authorization: localStorage.token } })
         .then(response => {
           this.$router.replace('/dashboard')
           document.getElementById('success-alert').style.display = 'block'

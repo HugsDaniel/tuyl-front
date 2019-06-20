@@ -12,22 +12,39 @@
         :disable-views="['years', 'year']"
         :locale="locale"
         today-button
-        :events="events"
+        :events="userActivities"
         events-count-on-year-view
+        :on-event-click="onEventClick"
       >
         <div slot="today-button">
-          <v-btn slot="activator">
+          <button slot="activator">
             <span>Today</span>
-          </v-btn>
+          </button>
         </div>
       </vue-cal>
+
+      <b-modal v-model="showDialog" :title="selectedEvent.title + ' - ' + selectedEvent.startDate">
+        <p v-html="selectedEvent.content"/>
+        <strong>Event details:</strong>
+        <ul>
+          <li>Event starts at: {{ selectedEvent.startTime }}</li>
+          <li>Event ends at: {{ selectedEvent.endTime }}</li>
+        </ul>
+        <template slot="modal-footer" slot-scope="{ ok }">
+
+          <router-link v-if="selectedEvent.status == 'pending'" :to="'/user_activity/' + selectedEvent.id" class="btn btn-outline-primary">Je l'ai fait !</router-link>
+          <b-button variant="outline-success" @click="ok()">
+            OK
+          </b-button>
+        </template>
+      </b-modal>
     </div>
 
     <h4>Mes activités</h4>
     <div class="row">
       <div class="col-lg-3 col-12" v-for="userActivity in userActivities" :key="userActivity.id" :userActivity="userActivity">
         <b-card
-            :title="userActivity.activity.name"
+            :title="userActivity.title"
             img-src="https://picsum.photos/600/300/?image=25"
             img-alt="Image"
             img-top
@@ -36,7 +53,7 @@
             class="mb-2"
           >
           <b-card-text>
-            {{ userActivity.activity.description }}
+            {{ userActivity.content }}
           </b-card-text>
 
           <router-link v-if="userActivity.status == 'pending'" :to="'/user_activity/' + userActivity.id" class="btn btn-outline-primary">Je l'ai fait !</router-link>
@@ -56,33 +73,12 @@ export default {
   components: { VueCal },
   data () {
     return {
+      selectedEvent: {},
+      showDialog: false,
       user: '',
       locale: 'fr',
       userActivities: [],
       userSkills: [],
-      events: [
-        {
-          start: '2019-06-21 14:00',
-          end: '2019-06-21 18:00',
-          title: 'Need to go shopping',
-          content: '<i class="v-icon material-icons">shopping_cart</i>',
-          class: 'leisure'
-        },
-        {
-          start: '2019-06-22 12:00',
-          end: '2019-06-22 14:00',
-          title: 'Golf with John',
-          content: '<i class="v-icon material-icons">golf_course</i>',
-          class: 'sport'
-        },
-        {
-          start: '2019-06-23 14:00',
-          end: '2019-06-23 20:00',
-          title: 'Dad\'s birthday!',
-          content: '<i class="v-icon material-icons">cake</i>',
-          class: 'sport'
-        }
-      ],
       errors: [],
       satisfactionLevels: [{ text: 'Nul', value: 0 }, { text: 'Passable', value: 1 }, { text: 'Pas mal', value: 2 }, { text: 'Bien', value: 3 }, { text: 'Exceptionnel', value: 4 }]
     }
@@ -101,6 +97,16 @@ export default {
           this.errors.push(e)
         })
     }
+  },
+
+  methods: {
+    onEventClick (event, e) {
+      this.selectedEvent = event
+      this.showDialog = true
+
+      // Prevent navigating to narrower view (default vue-cal behavior).
+      e.stopPropagation()
+    }
   }
 }
 </script>
@@ -108,6 +114,14 @@ export default {
   h4 {
     margin: 1rem;
   }
+
+  .vuecal__menu, .vuecal__cell-events-count {background-color: #42b983;}
+  .vuecal__menu li {border-bottom-color: #fff;color: #fff;}
+  .vuecal__menu li.active {background-color: rgba(255, 255, 255, 0.15);}
+  .vuecal__title-bar {background-color: #e4f5ef;}
+  .vuecal__cell.today, .vuecal__cell.current {background-color: rgba(240, 240, 255, 0.4);}
+  .vuecal:not(.vuecal--day-view) .vuecal__cell.selected {background-color: rgba(235, 255, 245, 0.4);}
+  .vuecal__cell.selected:before {border-color: rgba(66, 185, 131, 0.5);}
 
   .vuecal__event {cursor: pointer;}
 
