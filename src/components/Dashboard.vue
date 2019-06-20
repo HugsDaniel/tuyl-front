@@ -14,6 +14,7 @@
         today-button
         :events="userActivities"
         events-count-on-year-view
+        events-on-week-view="short"
         :on-event-click="onEventClick"
       >
         <div slot="today-button">
@@ -92,7 +93,7 @@ export default {
 
   #calendar {
     height: 40rem;
-    margin: 3rem 1rem;
+    margin: 3rem 0rem;
   }
 
   .vuecal__menu, .vuecal__cell-events-count {background-color: #42b983;}
@@ -105,20 +106,10 @@ export default {
 
   .vuecal__event {cursor: pointer;}
 
-  .vuecal__event-title {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 4px 0 8px;
-  }
-
   .vuecal__event-time {
     display: inline-block;
     margin-bottom: 12px;
     padding-bottom: 12px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  }
-
-  .vuecal__event-content {
-    font-style: italic;
   }
 </style>
