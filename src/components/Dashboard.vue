@@ -24,13 +24,6 @@
               <div class="element"></div>
             </div>
           </div>
-          <div class="element-quete">
-            <div class="store">
-              <div class="element"></div>
-              <div class="element"></div>
-              <div class="element"></div>
-            </div>
-          </div>
         </div>
       </div>
       <div id="progression">
@@ -65,7 +58,7 @@
         <div id="tuyl-s">
           <header></header>
           <div class="store">
-            <div class="element"><img src="/images/tuyl-sa.png"/></div>
+            <div class="element"></div>
             <div class="element"></div>
             <div class="element"></div>
           </div>
@@ -103,10 +96,6 @@
           <div class="element"></div>
           <div class="element"></div>
           <div class="element"></div>
-          <div class="element"></div>
-          <div class="element"></div>
-          <div class="element"></div>
-          <div class="element"></div>
         </div>
       </div>
 
@@ -136,12 +125,67 @@
       <div id="perso-skills">
           <header>mes Compétences (3/6)</header>
           <div id="listes_perso-skills">
-            <a href="#">Physique</a>
-            <a>Mental</a>
-            <a href="#">Spirituel</a>
-            <a>Énergie</a>
-            <a>Résistance</a>
-            <a href="#">Adaptation</a>
+            <div class="store-skill">
+              <div><img class="logo-skill" src="../assets/images/skill-force.png"  alt="Force" title="Je n'en reviens pas !"/></div>
+              <div class="description-skill">
+                <div><a href="#">Physique</a></div>
+                <div class="level-skill">Niveau 2</div>
+                <div class="level-bar-skill">
+                  <div id="level-full-physique"></div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="store-skill">
+              <div><img class="logo-skill" src="../assets/images/skill-intelligence.png"  alt="Intelligence" title="Je n'en reviens pas !"/></div>
+              <div class="description-skill">
+                <a>Mental</a>
+                <div class="level-skill">Niveau 1</div>
+                <div class="level-bar-skill">
+                  <div id="level-full-mental"></div>
+                </div>
+              </div>
+            </div>
+            <div class="store-skill">
+              <a><img class="logo-skill" src="../assets/images/skill-sagesse.png"  alt="Sagesse" title="Je n'en reviens pas !"/></a>
+              <div class="description-skill">
+                <a href="#">Spirituel</a>
+                <div class="level-skill">Niveau 2</div>
+                <div class="level-bar-skill">
+                  <div id="level-full-spirituel"></div>
+                </div>
+              </div>
+            </div>
+            <div class="store-skill">
+              <a><img class="logo-skill" src="../assets/images/skill-dexterite.png"  alt="Dextérité" title="Je n'en reviens pas !"/></a>
+              <div class="description-skill">
+                <a href="#">Adaptation</a>
+                <div class="level-skill">Niveau 2</div>
+                <div class="level-bar-skill">
+                  <div id="level-full-adaptation"></div>
+                </div>
+              </div>
+            </div>                        
+            <div class="store-skill">
+              <a><img class="logo-skill" src="../assets/images/skill-constitution.png"  alt="Constitution" title="Je n'en reviens pas !"/></a>
+              <div class="description-skill">
+                <a>Énergie</a>
+                <div class="level-skill">Niveau 1</div>
+                <div class="level-bar-skill">
+                  <div id="level-full-energie"></div>
+                </div>
+              </div>
+            </div>
+            <div class="store-skill">
+              <div><img class="logo-skill" src="../assets/images/skill-charisme.png"  alt="Charisme" title="Je n'en reviens pas !"/></div>
+              <div class="description-skill">
+                <a>Résistance</a>
+                <div class="level-skill">Niveau 1</div>
+                <div class="level-bar-skill">
+                  <div id="level-full-resistance"></div>
+                </div>
+              </div>
+            </div>
           </div>
       </div>
       <div id="perso-stats">
@@ -261,7 +305,8 @@
 
   #activities
   {
-    background: url(image/background.jpg) fixed;
+    background: url(../assets/images/background.jpg);
+    background-size: contain;
     color: rgb(133,134,138);
     width: auto;
   }
@@ -281,6 +326,8 @@
     background-color: rgba(21,27,39,0.42);
     padding: 3px;
     height: 29px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
   }
 
   #quetes
@@ -360,6 +407,97 @@
     border-radius: 7px;
   }
 
+  #listes_perso-skills
+  {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 7px;
+  }
+
+  .store-skill
+  {
+    display: flex;
+    width: 47%;
+    background-color: rgba(21,27,39,0.42);
+    margin: 3px;
+    border-radius: 7px;
+    padding: 3px;
+  }
+
+  .logo-skill
+  {
+    width: 84px;
+  }
+
+  .description-skill
+  {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 3px;
+  }
+
+  .level-skill
+  {
+    color: rgb(167,201,185);
+    font-family: montserratlight, Verdana;
+    font-size: 0.8em;
+    text-align: left;
+    margin-top: 7px;
+  }
+
+  .level-bar-skill
+  {
+    display: flex;
+    width: 100%;
+    height: 14px;
+    background-color: rgba(21,27,39,0.42);
+    border-radius: 3px;
+  }
+
+  #level-full-physique
+  {
+    width: 70%;
+    background-color: rgb(108,89,87);
+    border-radius: 3px;
+  }
+
+  #level-full-mental
+  {
+    width: 15%;
+    background-color: rgb(61,81,96);
+    border-radius: 3px;
+  }
+
+  #level-full-spirituel
+  {
+    width: 55%;
+    background-color: rgb(76,62,156);
+    border-radius: 3px;
+  }
+
+  #level-full-adaptation
+  {
+    width: 65%;
+    background-color: rgb(148,63,142);
+    border-radius: 3px;
+  }
+
+  #level-full-energie
+  {
+    width: 25%;
+    background-color: rgb(118,165,131);
+    border-radius: 3px;
+  }
+
+  #level-full-resistance
+  {
+    width: 22%;
+    background-color: rgb(52,181,212);
+    border-radius: 3px;
+  }
+
   #perso-stats
   {
     width: 50%;
@@ -410,7 +548,7 @@
   .element-quete
   {
     padding: 5px;
-    box-shadow: 1px 1px 22px rgb(191,64,107);
+    box-shadow: 1px 1px 14px rgb(191,64,107);
     border-radius: 22px;
     margin: 7px;
   }
@@ -420,7 +558,7 @@
   {
     width: 57px;
     height: 86px;
-    background: rgb(167,201,184);
+    background: url("../assets/images/tuylsa.png");
     border-radius: 9px;
     margin: 3px;
   }
@@ -429,7 +567,7 @@
   {
     width: 57px;
     height: 86px;
-    background-color: rgb(229,200,184);
+    background: url("../assets/images/tuylsb.png");
     border-radius: 9px;
     margin: 3px;
   }
@@ -449,13 +587,20 @@
     background-color: rgba(21,27,39,0.42);
     padding: 3px;
     height: 29px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+
   }
+
+
+
   footer a
   {
     display: block center;
     border-radius: 5px;
     padding: 3px;
-    font-size: 0.9em;
+    font-size: 0.95em;
+    font-weight: bold;
     text-decoration: none;
     color: rgb(229,200,184);
   }
