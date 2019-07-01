@@ -15,7 +15,7 @@
               <div class="element"></div>
               <div class="element"></div>
             </div>
-          </div> 
+          </div>
           <div class="element-quete">
             <div class="store">
               <div class="element"></div>
@@ -32,7 +32,6 @@
         </div>
       </div>
     </section>
-
 
     <section id="today-and-week">
       <div id="week-before">
@@ -82,9 +81,8 @@
         </div>
       </div>
     </section>
-    
 
-    <section id="tuyl-collection">      
+    <section id="tuyl-collection">
       <div id="people-s">
         <header>bien Accompagné (or People's)</header>
         <div class="store">
@@ -203,7 +201,7 @@
           </div>
       </div>
     </footer>
-    
+
     <!--<footer>
       <div id="perso-skills">
           <header>mes Compétences (3/6)</header>
@@ -236,7 +234,7 @@
     <div v-for="userSkill in userSkills" :key="userSkill.id" :userSkill="userSkill">{{userSkill.skill.name}} : {{userSkill.amount}}
     </div>
 
-    <div id="calendar"> 
+    <div id="calendar">
       <vue-cal
         small
         default-view="week"
@@ -268,10 +266,9 @@
         </template>
       </b-modal>
     </div> -->
-    
+
   </div>
 </template>
-
 
 <style>
   @font-face {
@@ -553,7 +550,6 @@
     margin: 7px;
   }
 
-
   .element:nth-child(n)
   {
     width: 57px;
@@ -637,49 +633,49 @@
 </style>
 
 <script>
-  import axios from 'axios'
-  import VueCal from 'vue-cal'
-  import 'vue-cal/dist/vuecal.css'
+import axios from 'axios'
+import VueCal from 'vue-cal'
+import 'vue-cal/dist/vuecal.css'
 
-  export default {
-    name: 'dashboard',
-    components: { VueCal },
-    data () {
-      return {
-        selectedEvent: {},
-        showDialog: false,
-        user: '',
-        locale: 'fr',
-        userActivities: [],
-        userSkills: [],
-        errors: [],
-        satisfactionLevels: [{ text: 'Nul', value: 0 }, { text: 'Passable', value: 1 }, { text: 'Pas mal', value: 2 }, { text: 'Bien', value: 3 }, { text: 'Exceptionnel', value: 4 }]
-      }
-    },
-    created () {
-      if (!localStorage.signedIn) {
-        this.$router.replace('/login')
-      } else {
-        axios.get(process.env.ROOT_API + '/api/v1/dashboard', { headers: { Authorization: localStorage.token } })
-          .then(response => {
-            this.user = response.data.user
-            this.userActivities = response.data.user_activities
-            this.userSkills = response.data.user_skills
-          })
-          .catch(e => {
-            this.errors.push(e)
-          })
-      }
-    },
+export default {
+  name: 'dashboard',
+  components: { VueCal },
+  data () {
+    return {
+      selectedEvent: {},
+      showDialog: false,
+      user: '',
+      locale: 'fr',
+      userActivities: [],
+      userSkills: [],
+      errors: [],
+      satisfactionLevels: [{ text: 'Nul', value: 0 }, { text: 'Passable', value: 1 }, { text: 'Pas mal', value: 2 }, { text: 'Bien', value: 3 }, { text: 'Exceptionnel', value: 4 }]
+    }
+  },
+  created () {
+    if (!localStorage.signedIn) {
+      this.$router.replace('/login')
+    } else {
+      axios.get(process.env.ROOT_API + '/api/v1/dashboard', { headers: { Authorization: localStorage.token } })
+        .then(response => {
+          this.user = response.data.user
+          this.userActivities = response.data.user_activities
+          this.userSkills = response.data.user_skills
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+    }
+  },
 
-    methods: {
-      onEventClick (event, e) {
-        this.selectedEvent = event
-        this.showDialog = true
+  methods: {
+    onEventClick (event, e) {
+      this.selectedEvent = event
+      this.showDialog = true
 
-        // Prevent navigating to narrower view (default vue-cal behavior).
-        e.stopPropagation()
-      }
+      // Prevent navigating to narrower view (default vue-cal behavior).
+      e.stopPropagation()
     }
   }
+}
 </script>
