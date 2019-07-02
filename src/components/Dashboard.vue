@@ -57,9 +57,7 @@
         <div id="tuyl-s">
           <header></header>
           <div class="store">
-            <div class="element"></div>
-            <div class="element"></div>
-            <div class="element"></div>
+            <div class="element" v-for="userActivity in userActivities" :key="userActivity.id" :userActivity="userActivity"><img src="./image/tuylsa.png"/></div>
           </div>
         </div>
       </div>
@@ -132,7 +130,7 @@
                   <div id="level-full-physique"></div>
                 </div>
               </div>
-              
+
             </div>
             <div class="store-skill">
               <div><img class="logo-skill" src="../assets/images/skill-intelligence.png"  alt="Intelligence" title="Je n'en reviens pas !"/></div>
@@ -163,7 +161,7 @@
                   <div id="level-full-adaptation"></div>
                 </div>
               </div>
-            </div>                        
+            </div>
             <div class="store-skill">
               <a><img class="logo-skill" src="../assets/images/skill-constitution.png"  alt="Constitution" title="Je n'en reviens pas !"/></a>
               <div class="description-skill">
@@ -231,10 +229,10 @@
     </footer>
 
     <h4>mes Compétences (or Skill's)</h4>-->
-    <div v-for="userSkill in userSkills" :key="userSkill.id" :userSkill="userSkill">{{userSkill.skill.name}} : {{userSkill.amount}}
-    </div>
+  <!--   <div v-for="userSkill in userSkills" :key="userSkill.id" :userSkill="userSkill">{{userSkill.skill.name}} : {{userSkill.amount}}
+    </div> -->
 
-    <div id="calendar">
+    <!-- <div id="calendar">
       <vue-cal
         small
         default-view="week"
