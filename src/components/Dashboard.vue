@@ -57,7 +57,7 @@
         <div id="tuyl-s">
           <header></header>
           <div class="store">
-            <div class="element" v-for="userActivity in userActivities" :key="userActivity.id" :userActivity="userActivity"><img src="./image/tuylsa.png"/></div>
+            <div class="element" v-for="userActivity in userActivities" :key="userActivity.id" :userActivity="userActivity"><img src="../assets/images/tuylsa.png"/></div>
           </div>
         </div>
       </div>
@@ -124,7 +124,7 @@
             <div class="store-skill">
               <div><img class="logo-skill" src="../assets/images/skill-force.png"  alt="Force" title="Je n'en reviens pas !"/></div>
               <div class="description-skill">
-                <div><a href="#">Physique</a></div>
+                <div><a>Physique</a></div>
                 <div class="level-skill">Niveau 2</div>
                 <div class="level-bar-skill">
                   <div id="level-full-physique"></div>
@@ -145,7 +145,7 @@
             <div class="store-skill">
               <a><img class="logo-skill" src="../assets/images/skill-sagesse.png"  alt="Sagesse" title="Je n'en reviens pas !"/></a>
               <div class="description-skill">
-                <a href="#">Spirituel</a>
+                <a>Spirituel</a>
                 <div class="level-skill">Niveau 2</div>
                 <div class="level-bar-skill">
                   <div id="level-full-spirituel"></div>
@@ -155,7 +155,7 @@
             <div class="store-skill">
               <a><img class="logo-skill" src="../assets/images/skill-dexterite.png"  alt="Dextérité" title="Je n'en reviens pas !"/></a>
               <div class="description-skill">
-                <a href="#">Adaptation</a>
+                <a>Adaptation</a>
                 <div class="level-skill">Niveau 2</div>
                 <div class="level-bar-skill">
                   <div id="level-full-adaptation"></div>
@@ -271,29 +271,29 @@
 <style>
   @font-face {
       font-family: 'montserratbold';
-      src: url('fonts/montserrat-bold-webfont.woff2') format('woff2'),
-           url('fonts/montserrat-bold-webfont.woff') format('woff');
+      src: url('../assets/fonts/montserrat-bold-webfont.woff2') format('woff2'),
+           url('../assets/fonts/montserrat-bold-webfont.woff') format('woff');
       font-weight: normal;
       font-style: normal;
   }
   @font-face {
       font-family: 'montserratitalic';
-      src: url('fonts/montserrat-italic-webfont.woff2') format('woff2'),
-           url('fonts/montserrat-italic-webfont.woff') format('woff');
+      src: url('../assets/fonts/montserrat-italic-webfont.woff2') format('woff2'),
+           url('../assets/fonts/montserrat-italic-webfont.woff') format('woff');
       font-weight: normal;
       font-style: normal;
   }
   @font-face {
       font-family: 'montserratlight';
-      src: url('fonts/montserrat-light-webfont.woff2') format('woff2'),
-           url('fonts/montserrat-light-webfont.woff') format('woff');
+      src: url('../assets/fonts/montserrat-light-webfont.woff2') format('woff2'),
+           url('../assets/fonts/montserrat-light-webfont.woff') format('woff');
       font-weight: normal;
       font-style: normal;
   }
   @font-face {
       font-family: 'montserratmedium';
-      src: url('fonts/montserrat-medium-webfont.woff2') format('woff2'),
-           url('fonts/montserrat-medium-webfont.woff') format('woff');
+      src: url('../assets/fonts/montserrat-medium-webfont.woff2') format('woff2'),
+           url('../assets/fonts/montserrat-medium-webfont.woff') format('woff');
       font-weight: normal;
       font-style: normal;
   }
@@ -585,8 +585,6 @@
     border-top-right-radius: 7px;
 
   }
-
-
 
   footer a
   {
